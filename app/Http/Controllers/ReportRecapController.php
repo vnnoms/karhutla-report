@@ -6,13 +6,14 @@ use App\Models\Address;
 use App\Models\Report;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ReportRecapController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request): View|Response
     {
         $provinces = Address::query()
             ->whereHas('reports')
@@ -99,7 +100,7 @@ class ReportRecapController extends Controller
             'critical' => 'Kritis',
         ];
 
-        return view('coordinator.reports.recap', compact(
+        $data = compact(
             'cityOptions',
             'conditionLabels',
             'filters',
@@ -110,6 +111,14 @@ class ReportRecapController extends Controller
             'statusLabels',
             'statuses',
             'summary',
-        ));
+        );
+
+        if ($request->ajax()) {
+            return response()
+                ->view('coordinator.reports.partials.recap-results', $data)
+                ->header('Vary', 'X-Requested-With');
+        }
+
+        return view('coordinator.reports.recap', $data);
     }
 }

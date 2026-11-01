@@ -37,6 +37,8 @@
 .recap-description { min-width: 230px; max-width: 340px; }
 .recap-table .status-badge { white-space: nowrap; }
 .recap-empty-state { margin: 22px; }
+.recap-live-status { min-height: 1.5em; margin: -8px 0 10px; color: #64776a; font-size: 12px; }
+#recap-results[aria-busy="true"] { opacity: 0.58; pointer-events: none; transition: opacity 160ms ease; }
 
 @media (max-width: 1000px) {
     .recap-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
