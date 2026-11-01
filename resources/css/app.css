@@ -145,12 +145,23 @@ a { color: inherit; }
 .detail-grid .detail-section { border-bottom: 1px solid #edf1eb; }
 .evidence-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .evidence-row p { color: #819086; font-size: 12px; }
+.evidence-preview { display: block; width: min(100%, 760px); max-height: 520px; margin: 0 auto 22px; border: 1px solid #e1e9e0; border-radius: 16px; object-fit: contain; background: #f7faf6; }
 .button-danger { border-color: #efd1cc; color: #963e37 !important; background: #fff5f3 !important; }
 .button-danger:hover { background: #fee9e5 !important; }
 .notice-card { margin-top: 18px; padding: 15px 18px; border: 1px solid #e7dcc0; border-radius: 13px; color: #78612d; background: #fff9e9; font-size: 13px; }
 .card-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 13px; color: #216744; font-size: 12px; font-weight: 800; text-decoration: none; }
 .card-link:hover { text-decoration: underline; }
 .report-nav-link { white-space: nowrap; }
+.user-list { display: grid; gap: 10px; }
+.user-list-row { display: flex; align-items: center; gap: 15px; padding: 17px 19px; border: 1px solid #e1e9e0; border-radius: 17px; background: #fff; text-decoration: none; transition: border-color 150ms ease, transform 150ms ease; }
+.user-list-row:hover { transform: translateY(-1px); border-color: #b9d1bb; }
+.user-list-main { display: grid; min-width: 0; flex: 1; gap: 5px; }
+.user-list-main strong { overflow: hidden; color: #234633; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.user-list-main > span { overflow: hidden; color: #748379; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.role-badge { display: inline-flex; align-items: center; padding: 6px 10px; border: 1px solid #dce7dd; border-radius: 99px; color: #37634a; background: #f4f8f2; font-size: 11px; font-weight: 800; text-transform: capitalize; }
+.role-coordinator { border-color: #e7dcc0; color: #83631f; background: #fff9e9; }
+.user-role-action { display: flex; justify-content: flex-end; }
+.user-detail-card { margin-top: 10px; }
 
 @media (max-width: 900px) {
     .hero { gap: 28px; padding: 42px; }
@@ -184,4 +195,6 @@ a { color: inherit; }
     .evidence-row { align-items: flex-start; flex-direction: column; }
     .report-card { padding: 18px; }
     .report-nav-link { font-size: 12px; }
+    .user-list-row { gap: 10px; padding: 14px; }
+    .user-list-row .role-badge { font-size: 10px; }
 }

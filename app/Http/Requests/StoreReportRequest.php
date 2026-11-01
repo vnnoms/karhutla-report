@@ -36,9 +36,9 @@ class StoreReportRequest extends FormRequest
             'evidence_file' => [
                 'nullable',
                 'image',
-                'mimes:jpg,jpeg,png,webp',
-                'extensions:jpg,jpeg,png,webp',
-                'max:5120',
+                'mimes:jpg,jpeg,png',
+                'extensions:jpg,jpeg,png',
+                'max:2048',
             ],
         ];
     }

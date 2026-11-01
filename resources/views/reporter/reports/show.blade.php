@@ -46,10 +46,10 @@
             <section class="detail-section evidence-row">
                 <div>
                     <span class="detail-label">Foto bukti</span>
-                    <p>Foto disimpan secara privat dan hanya dapat diakses pemilik laporan.</p>
+                    <p>Foto bukti kejadian yang dikirim bersama laporan.</p>
                 </div>
-                <a class="button button-secondary" href="{{ route('reporter.reports.evidence', $report) }}">Unduh foto</a>
             </section>
+            <img class="evidence-preview" src="{{ route('reporter.reports.evidence', $report) }}" alt="Foto bukti laporan karhutla">
         @endif
     </article>
 

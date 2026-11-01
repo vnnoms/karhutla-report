@@ -179,14 +179,11 @@ class ReportController extends Controller
 
         abort_if(
             $report->evidence_file === null
-                || ! Storage::disk('local')->exists($report->evidence_file),
+                || ! Storage::disk('public')->exists($report->evidence_file),
             404,
         );
 
-        return Storage::disk('local')->download(
-            $report->evidence_file,
-            basename($report->evidence_file),
-        );
+        return Storage::disk('public')->response($report->evidence_file);
     }
 
     /**
@@ -209,7 +206,7 @@ class ReportController extends Controller
             return null;
         }
 
-        $path = $file->store('reports/evidence', 'local');
+        $path = $file->store('reports/evidence', 'public');
 
         if (! is_string($path)) {
             throw new RuntimeException('The report evidence could not be stored.');
@@ -221,7 +218,7 @@ class ReportController extends Controller
     private function deleteEvidence(?string $path): void
     {
         if ($path !== null) {
-            Storage::disk('local')->delete($path);
+            Storage::disk('public')->delete($path);
         }
     }
 }

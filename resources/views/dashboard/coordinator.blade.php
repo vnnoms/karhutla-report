@@ -24,5 +24,11 @@
             <h2>Pantau area</h2>
             <p>Data wilayah dan kondisi menjadi dasar dalam menentukan prioritas respons.</p>
         </article>
+        <article class="dashboard-card">
+            <span class="dashboard-card-icon" aria-hidden="true">U</span>
+            <h2>Manajemen pengguna</h2>
+            <p>Lihat pengguna dan kelola role reporter serta volunteer.</p>
+            <a class="card-link" href="{{ route('coordinator.users.index') }}">Buka manajemen pengguna</a>
+        </article>
     </div>
 @endsection

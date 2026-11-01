@@ -26,7 +26,7 @@ class ReporterReportsTest extends TestCase
 
         DB::purge('sqlite');
         $this->withoutVite();
-        Storage::fake('local');
+        Storage::fake('public');
 
         Schema::connection('sqlite')->create('users', function (Blueprint $table): void {
             $table->bigIncrements('user_id');
@@ -119,7 +119,7 @@ class ReporterReportsTest extends TestCase
             'status' => 'pending',
             'condition_level' => 'high',
         ]);
-        Storage::disk('local')->assertExists($report->evidence_file);
+        Storage::disk('public')->assertExists($report->evidence_file);
     }
 
     public function test_invalid_report_data_is_rejected_without_creating_records(): void
@@ -206,6 +206,42 @@ class ReporterReportsTest extends TestCase
         ]);
     }
 
+    public function test_reporter_can_replace_evidence_and_old_public_file_is_removed(): void
+    {
+        $reporter = $this->createUser('reporter', 'reporter@example.test');
+        $oldPath = 'reports/evidence/old-photo.jpg';
+        Storage::disk('public')->put($oldPath, 'old photo');
+        $report = $this->createReport($reporter, 'Laporan awal', 'pending', $oldPath);
+
+        $this->actingAs($reporter)
+            ->put(route('reporter.reports.update', $report), $this->validReport([
+                'evidence_file' => UploadedFile::fake()->createWithContent('new-photo.jpg', 'new photo'),
+            ]))
+            ->assertRedirect(route('reporter.reports.show', $report));
+
+        $report->refresh();
+        $this->assertNotSame($oldPath, $report->evidence_file);
+        Storage::disk('public')->assertMissing($oldPath);
+        Storage::disk('public')->assertExists($report->evidence_file);
+    }
+
+    public function test_evidence_must_be_jpg_jpeg_or_png_and_no_larger_than_two_megabytes(): void
+    {
+        $reporter = $this->createUser('reporter', 'reporter@example.test');
+
+        foreach ([
+            UploadedFile::fake()->createWithContent('evidence.webp', 'not accepted'),
+            UploadedFile::fake()->create('large.jpg', 2049, 'image/jpeg'),
+        ] as $file) {
+            $this->actingAs($reporter)
+                ->post(route('reporter.reports.store'), $this->validReport(['evidence_file' => $file]))
+                ->assertSessionHasErrors('evidence_file');
+        }
+
+        $this->assertDatabaseCount('addresses', 0);
+        $this->assertDatabaseCount('reports', 0);
+    }
+
     public function test_reporter_cannot_edit_a_processed_report(): void
     {
         $reporter = $this->createUser('reporter', 'reporter@example.test');
@@ -228,7 +264,7 @@ class ReporterReportsTest extends TestCase
     {
         $reporter = $this->createUser('reporter', 'reporter@example.test');
         $evidencePath = 'reports/evidence/sample.jpg';
-        Storage::disk('local')->put($evidencePath, 'test image');
+        Storage::disk('public')->put($evidencePath, 'test image');
         $report = $this->createReport($reporter, 'Laporan yang dihapus', 'pending', $evidencePath);
         $addressId = $report->address_id;
 
@@ -238,7 +274,7 @@ class ReporterReportsTest extends TestCase
 
         $this->assertDatabaseMissing('reports', ['report_id' => $report->report_id]);
         $this->assertDatabaseMissing('addresses', ['address_id' => $addressId]);
-        Storage::disk('local')->assertMissing($evidencePath);
+        Storage::disk('public')->assertMissing($evidencePath);
     }
 
     public function test_reporter_cannot_delete_a_processed_or_another_users_report(): void
@@ -263,7 +299,7 @@ class ReporterReportsTest extends TestCase
         $reporter = $this->createUser('reporter', 'reporter@example.test');
         $otherReporter = $this->createUser('reporter', 'other@example.test');
         $evidencePath = 'reports/evidence/private.jpg';
-        Storage::disk('local')->put($evidencePath, 'test image');
+        Storage::disk('public')->put($evidencePath, 'test image');
         $report = $this->createReport($reporter, 'Laporan dengan foto', 'pending', $evidencePath);
 
         $this->actingAs($reporter)
