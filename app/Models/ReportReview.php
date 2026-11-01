@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ReportReview extends Model
 {
     protected $table = 'report_reviews';
+
     protected $primaryKey = 'review_id';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -18,6 +20,15 @@ class ReportReview extends Model
         'review_date',
         'followed_up_required',
     ];
+
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'review_date' => 'datetime',
+            'followed_up_required' => 'boolean',
+        ];
+    }
 
     public function report(): BelongsTo
     {

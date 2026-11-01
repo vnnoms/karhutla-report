@@ -26,6 +26,9 @@
                     @if (auth()->user()->role === 'coordinator')
                         <a class="link-muted report-nav-link" href="{{ route('coordinator.users.index') }}">Manajemen pengguna</a>
                     @endif
+                    @if (auth()->user()->role === 'volunteer')
+                        <a class="link-muted report-nav-link" href="{{ route('dashboard.volunteer') }}#laporan-menunggu">Laporan masuk</a>
+                    @endif
                     <div class="user-chip">
                         <span class="user-avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 1)) }}</span>
                         <span>{{ auth()->user()->name }}</span>

@@ -3,6 +3,7 @@
     .auth-page { grid-template-columns: 1fr 0.8fr; }
     .auth-panel { padding: 26px; }
     .dashboard-grid { grid-template-columns: 1fr 1fr; }
+    .volunteer-detail-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 700px) {
@@ -32,4 +33,8 @@
     .report-nav-link { font-size: 12px; }
     .user-list-row { gap: 10px; padding: 14px; }
     .user-list-row .role-badge { font-size: 10px; }
+    .volunteer-report-card { padding: 18px; }
+    .volunteer-report-heading { align-items: flex-start; }
+    .volunteer-report-meta { display: grid; gap: 8px; }
+    .volunteer-report-link { width: 100%; }
 }

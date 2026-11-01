@@ -32,6 +32,30 @@ class AuthenticationTest extends TestCase
             $table->string('phone_number', 20)->nullable();
             $table->string('role', 20);
         });
+
+        Schema::connection('sqlite')->create('addresses', function (Blueprint $table): void {
+            $table->bigIncrements('address_id');
+            $table->text('detail_address');
+            $table->string('city_regency', 100);
+            $table->string('province', 100);
+            $table->string('island', 100);
+        });
+
+        Schema::connection('sqlite')->create('reports', function (Blueprint $table): void {
+            $table->bigIncrements('report_id');
+            $table->unsignedBigInteger('reporter_id');
+            $table->string('evidence_file')->nullable();
+            $table->text('report_description');
+            $table->dateTime('incident_time');
+            $table->string('condition_level', 50);
+            $table->unsignedBigInteger('address_id');
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+            $table->string('status', 30);
+            $table->timestamps();
+            $table->foreign('reporter_id')->references('user_id')->on('users');
+            $table->foreign('address_id')->references('address_id')->on('addresses');
+        });
     }
 
     public function test_login_and_registration_pages_are_available_to_guests(): void

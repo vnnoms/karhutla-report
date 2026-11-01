@@ -24,6 +24,16 @@ class ReportPolicy
             && (int) $report->reporter_id === (int) $user->getAuthIdentifier();
     }
 
+    public function viewAsVolunteer(User $user, Report $report): bool
+    {
+        return $user->role === 'volunteer';
+    }
+
+    public function reviewAsVolunteer(User $user, Report $report): bool
+    {
+        return $user->role === 'volunteer' && $report->status === 'pending';
+    }
+
     /**
      * Determine whether the user can create models.
      */

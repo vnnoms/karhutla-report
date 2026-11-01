@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportRecapController;
+use App\Http\Controllers\VolunteerReportController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,16 @@ Route::middleware('auth')->group(function (): void {
     Route::get('/coordinator/reports/recap', [ReportRecapController::class, 'index'])
         ->middleware('role:coordinator')
         ->name('coordinator.reports.recap');
+
+    Route::prefix('volunteer/reports')
+        ->name('volunteer.reports.')
+        ->middleware('role:volunteer')
+        ->controller(VolunteerReportController::class)
+        ->group(function (): void {
+            Route::get('/{report}', 'show')->name('show');
+            Route::get('/{report}/evidence', 'evidence')->name('evidence');
+            Route::post('/{report}/review', 'storeReview')->name('reviews.store');
+        });
 
     Route::prefix('coordinator/users')
         ->name('coordinator.users.')

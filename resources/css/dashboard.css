@@ -13,6 +13,39 @@
 .dashboard-card-icon { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 14px; color: #26704b; background: #ebf4e9; font-size: 18px; }
 .dashboard-card h2 { margin: 18px 0 7px; color: #234633; font-size: 15px; font-weight: 760; }
 .dashboard-card p { margin: 0; color: #748379; font-size: 13px; line-height: 1.6; }
+.volunteer-inbox { margin-top: 36px; scroll-margin-top: 20px; }
+.volunteer-inbox .page-heading { margin-bottom: 18px; }
+.volunteer-inbox .page-heading h2 { margin: 12px 0 7px; color: #173b29; font-size: clamp(24px, 3vw, 32px); font-weight: 760; letter-spacing: -0.05em; }
+.volunteer-report-list { display: grid; gap: 12px; }
+.volunteer-report-card { padding: 22px 24px; border: 1px solid #e1e9e0; border-radius: 18px; background: #fff; box-shadow: 0 10px 30px #24472b08; }
+.volunteer-report-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.volunteer-report-heading h3 { margin: 8px 0 0; color: #234633; font-size: 17px; font-weight: 750; }
+.volunteer-report-description { margin: 16px 0; color: #4e6b59; font-size: 14px; line-height: 1.7; white-space: pre-line; }
+.volunteer-report-meta { display: flex; flex-wrap: wrap; gap: 9px 22px; padding-top: 13px; border-top: 1px solid #edf1eb; color: #748379; font-size: 12px; }
+.volunteer-report-meta strong { color: #45604e; }
+.volunteer-evidence-note { color: #216744; font-weight: 750; }
+.volunteer-report-link { margin-top: 17px; }
+.volunteer-detail-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); align-items: start; gap: 18px; }
+.volunteer-review-column { display: grid; gap: 16px; }
+.volunteer-status { margin-bottom: 18px; }
+.volunteer-evidence-section .evidence-preview { margin-top: 18px; }
+.volunteer-evidence-section .link-muted { display: inline-block; margin-bottom: 12px; }
+.review-flag { display: flex; align-items: flex-start; gap: 12px; padding: 15px; border: 1px solid #e7dcc0; border-radius: 13px; background: #fff9e9; cursor: pointer; }
+.review-flag input { width: 18px; height: 18px; flex: 0 0 auto; margin: 2px 0 0; accent-color: #1e6543; }
+.review-flag > span { display: grid; gap: 5px; }
+.review-flag strong { color: #6c5422; font-size: 13px; }
+.review-flag small { color: #857451; font-size: 12px; line-height: 1.5; }
+.volunteer-reviewed-notice { margin: 0; }
+.volunteer-reviewed-notice p { margin: 8px 0 0; line-height: 1.6; }
+.volunteer-history { gap: 14px; }
+.volunteer-review-entry { padding: 14px 0; border-bottom: 1px solid #edf1eb; }
+.volunteer-review-entry:last-child { padding-bottom: 0; border-bottom: 0; }
+.volunteer-review-entry-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; color: #355541; font-size: 12px; }
+.volunteer-review-entry-heading time { color: #819086; font-size: 11px; }
+.volunteer-review-entry > p { margin: 10px 0; color: #4e6b59; font-size: 13px; line-height: 1.65; white-space: pre-line; }
+.volunteer-no-reviews { margin: 0; color: #819086; font-size: 13px; }
+.volunteer-related-section { margin-top: 34px; }
+.volunteer-related-section .page-heading h2 { margin: 12px 0 7px; color: #173b29; font-size: clamp(24px, 3vw, 32px); font-weight: 760; letter-spacing: -0.05em; }
 .page-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 22px; margin-bottom: 26px; }
 .page-heading h1 { margin: 12px 0 7px; color: #173b29; font-size: clamp(30px, 4vw, 42px); font-weight: 760; letter-spacing: -0.055em; }
 .page-heading p { margin: 0; color: #718077; font-size: 14px; line-height: 1.65; }
