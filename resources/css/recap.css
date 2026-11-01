@@ -1,0 +1,56 @@
+.recap-summary { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 13px; margin: 0 0 22px; }
+.recap-stat { display: grid; min-height: 116px; align-content: space-between; gap: 15px; padding: 19px 20px; border: 1px solid #e1e9e0; border-radius: 18px; background: #fff; box-shadow: 0 10px 30px #24472b08; }
+.recap-stat > span { color: #748379; font-size: 12px; font-weight: 700; }
+.recap-stat > strong { color: #234633; font-size: 31px; font-weight: 780; letter-spacing: -0.05em; line-height: 1; }
+.recap-stat-total { border-color: #cbdcc9; background: linear-gradient(145deg, #fff, #f0f7ed); }
+.recap-stat-total > strong { color: #1e6543; }
+.recap-regions { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 22px; }
+.recap-panel { min-width: 0; padding: 23px; border: 1px solid #e1e9e0; border-radius: 19px; background: #fff; box-shadow: 0 10px 30px #24472b08; }
+.recap-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; margin-bottom: 16px; }
+.recap-panel-heading h2 { margin: 0 0 5px; color: #234633; font-size: 16px; font-weight: 760; }
+.recap-panel-heading p { margin: 0; color: #819086; font-size: 12px; }
+.recap-region-list { display: grid; max-height: 285px; gap: 0; overflow: auto; margin: 0; padding: 0; list-style: none; }
+.recap-region-list li { display: flex; min-height: 49px; align-items: center; justify-content: space-between; gap: 14px; border-bottom: 1px solid #edf1eb; color: #355541; font-size: 13px; }
+.recap-region-list li:last-child { border-bottom: 0; }
+.recap-region-list li > strong { color: #1e6543; font-size: 14px; }
+.recap-region-list li > span { display: grid; gap: 3px; }
+.recap-region-list small { color: #819086; font-size: 11px; }
+.recap-empty-inline { margin: 20px 0 4px; color: #819086; font-size: 13px; }
+.recap-table-panel { padding: 23px 0; }
+.recap-table-heading { padding: 0 23px; }
+.recap-filters { display: grid; grid-template-columns: 1fr 1fr 1fr auto; align-items: end; gap: 12px; padding: 0 23px 21px; border-bottom: 1px solid #edf1eb; }
+.recap-filters .field { gap: 7px; }
+.recap-filters select { min-width: 0; min-height: 44px; padding-top: 9px; padding-bottom: 9px; font-size: 13px; }
+.recap-filter-actions { display: flex; gap: 8px; }
+.recap-filter-actions .button { min-height: 44px; padding: 0 13px; font-size: 12px; }
+.recap-table-scroll { width: 100%; overflow-x: auto; }
+.recap-table { width: 100%; border-collapse: collapse; text-align: left; }
+.recap-table th { padding: 14px 13px; color: #819086; background: #fbfdf9; font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.recap-table th:first-child, .recap-table td:first-child { padding-left: 23px; }
+.recap-table th:last-child, .recap-table td:last-child { padding-right: 23px; }
+.recap-table td { padding: 15px 13px; border-top: 1px solid #edf1eb; color: #45604e; font-size: 12px; line-height: 1.55; vertical-align: top; }
+.recap-table tbody tr:hover { background: #fbfdf9; }
+.recap-table td:first-child { color: #216744; font-weight: 800; white-space: nowrap; }
+.recap-description { min-width: 230px; max-width: 340px; }
+.recap-table .status-badge { white-space: nowrap; }
+.recap-empty-state { margin: 22px; }
+
+@media (max-width: 1000px) {
+    .recap-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .recap-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .recap-filter-actions { grid-column: 1 / -1; }
+}
+
+@media (max-width: 700px) {
+    .recap-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+    .recap-stat { min-height: 96px; padding: 15px; }
+    .recap-stat > strong { font-size: 27px; }
+    .recap-regions { grid-template-columns: 1fr; gap: 12px; }
+    .recap-panel { padding: 19px; }
+    .recap-table-panel { padding: 19px 0; }
+    .recap-table-heading { padding: 0 19px; }
+    .recap-filters { grid-template-columns: 1fr; padding: 0 19px 18px; }
+    .recap-filter-actions { grid-column: auto; }
+    .recap-filter-actions .button { flex: 1; }
+    .recap-empty-state { margin: 18px; }
+}

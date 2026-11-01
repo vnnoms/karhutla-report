@@ -50,8 +50,6 @@ class ReportController extends Controller
         $validated = $request->validated();
         $evidencePath = $this->storeEvidence($request->file('evidence_file'));
         $addressData = $this->addressData($validated);
-
-        /** @var User $user */
         $user = $request->user();
 
         try {
@@ -186,10 +184,6 @@ class ReportController extends Controller
         return Storage::disk('public')->response($report->evidence_file);
     }
 
-    /**
-     * @param  array<string, mixed>  $validated
-     * @return array{detail_address: string, city_regency: string, province: string, island: string}
-     */
     private function addressData(array $validated): array
     {
         return [

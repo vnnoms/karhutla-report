@@ -8,19 +8,25 @@ use Illuminate\Validation\Rule;
 
 class StoreReportRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return $this->user() instanceof User && $this->user()->role === 'reporter';
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, array<int, mixed>>
-     */
+    public function messages(): array
+    {
+        return [
+            'report_description' => 'Jumlah karakter melebihi batas maksimal.',
+            'incident_time' => 'Format waktu kejadian tidak valid.',
+            'condition_level' => 'Tingkat kondisi tidak valid.',
+            'detail_address' => 'Alamat detail wajib diisi.',
+            'city_regency' => 'Kota/Kabupaten wajib diisi.',
+            'province' => 'Provinsi wajib diisi.',
+            'island' => 'Pulau wajib diisi.',
+            'evidence_file.extensions' => 'Format file bukti kejadian harus JPG, JPEG, atau PNG.',
+        ];
+    }
+
     public function rules(): array
     {
         return [

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReportRecapController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,10 @@ Route::middleware('guest')->group(function (): void {
 Route::middleware('auth')->group(function (): void {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/coordinator/reports/recap', [ReportRecapController::class, 'index'])
+        ->middleware('role:coordinator')
+        ->name('coordinator.reports.recap');
 
     Route::prefix('coordinator/users')
         ->name('coordinator.users.')

@@ -12,7 +12,8 @@
         <article class="dashboard-card">
             <span class="dashboard-card-icon" aria-hidden="true">▤</span>
             <h2>Ringkasan laporan</h2>
-            <p>Ringkasan laporan yang telah diverifikasi akan tersedia di sini.</p>
+            <p>Lihat jumlah laporan, rekap wilayah, dan rincian terbaru.</p>
+            <a class="card-link" href="{{ route('coordinator.reports.recap') }}">Buka rekap data laporan</a>
         </article>
         <article class="dashboard-card">
             <span class="dashboard-card-icon" aria-hidden="true">↗</span>

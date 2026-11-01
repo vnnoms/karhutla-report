@@ -1,0 +1,11 @@
+.recap-pagination { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 23px 0; }
+.recap-pagination > p { margin: 0; color: #748379; font-size: 12px; }
+.recap-pagination-actions { display: flex; gap: 8px; }
+.recap-pagination-actions .button { min-height: 40px; padding: 0 13px; font-size: 12px; }
+.recap-page-disabled { cursor: not-allowed; opacity: 0.5; }
+
+@media (max-width: 700px) {
+    .recap-pagination { align-items: flex-start; flex-direction: column; padding: 17px 19px 0; }
+    .recap-pagination-actions { width: 100%; }
+    .recap-pagination-actions .button { flex: 1; }
+}
