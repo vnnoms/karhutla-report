@@ -4,6 +4,7 @@
     .auth-panel { padding: 26px; }
     .dashboard-grid { grid-template-columns: 1fr 1fr; }
     .volunteer-detail-grid { grid-template-columns: 1fr; }
+    .coordinator-report-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 700px) {

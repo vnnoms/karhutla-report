@@ -80,7 +80,8 @@ class ReportRecapTest extends TestCase
             ->assertSee('Laporan menunggu')
             ->assertSee('Laporan selesai')
             ->assertSee('Kalimantan Timur')
-            ->assertSee('Bandung');
+            ->assertSee('Bandung')
+            ->assertSee(route('coordinator.reports.show', 1));
     }
 
     public function test_region_and_status_filters_query_the_report_data(): void

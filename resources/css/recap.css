@@ -31,6 +31,8 @@
 .recap-table td { padding: 15px 13px; border-top: 1px solid #edf1eb; color: #45604e; font-size: 12px; line-height: 1.55; vertical-align: top; }
 .recap-table tbody tr:hover { background: #fbfdf9; }
 .recap-table td:first-child { color: #216744; font-weight: 800; white-space: nowrap; }
+.recap-detail-link { color: inherit; font-weight: 800; text-decoration: none; }
+.recap-detail-link:hover { text-decoration: underline; }
 .recap-description { min-width: 230px; max-width: 340px; }
 .recap-table .status-badge { white-space: nowrap; }
 .recap-empty-state { margin: 22px; }

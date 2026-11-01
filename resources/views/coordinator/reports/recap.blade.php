@@ -110,7 +110,7 @@
                     <tbody>
                         @foreach ($reports as $report)
                             <tr>
-                                <td>#{{ $report->report_id }}</td>
+                                <td><a class="recap-detail-link" href="{{ route('coordinator.reports.show', $report) }}">#{{ $report->report_id }}</a></td>
                                 <td>{{ $report->reporter?->name ?? 'Pengguna tidak ditemukan' }}</td>
                                 <td class="recap-description">{{ str($report->report_description)->limit(120) }}</td>
                                 <td>{{ $report->incident_time?->locale('id')->translatedFormat('d M Y, H:i') ?? '—' }}</td>

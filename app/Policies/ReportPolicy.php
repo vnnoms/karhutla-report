@@ -34,6 +34,23 @@ class ReportPolicy
         return $user->role === 'volunteer' && $report->status === 'pending';
     }
 
+    public function viewAsCoordinator(User $user, Report $report): bool
+    {
+        return $user->role === 'coordinator';
+    }
+
+    public function forwardAsCoordinator(User $user, Report $report): bool
+    {
+        return $user->role === 'coordinator' && $report->status === 'reviewed';
+    }
+
+    public function completeAsCoordinator(User $user, Report $report): bool
+    {
+        return $user->role === 'coordinator'
+            && $report->status === 'forwarded'
+            && $report->forwardings()->exists();
+    }
+
     /**
      * Determine whether the user can create models.
      */

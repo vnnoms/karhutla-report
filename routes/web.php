@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CoordinatorReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportRecapController;
-use App\Http\Controllers\VolunteerReportController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\VolunteerReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,6 +30,23 @@ Route::middleware('auth')->group(function (): void {
     Route::get('/coordinator/reports/recap', [ReportRecapController::class, 'index'])
         ->middleware('role:coordinator')
         ->name('coordinator.reports.recap');
+
+    Route::get('/coordinator/reports/{report}', [CoordinatorReportController::class, 'show'])
+        ->whereNumber('report')
+        ->middleware('role:coordinator')
+        ->name('coordinator.reports.show');
+    Route::get('/coordinator/reports/{report}/evidence', [CoordinatorReportController::class, 'evidence'])
+        ->whereNumber('report')
+        ->middleware('role:coordinator')
+        ->name('coordinator.reports.evidence');
+    Route::post('/coordinator/reports/{report}/forwardings', [CoordinatorReportController::class, 'storeForwarding'])
+        ->whereNumber('report')
+        ->middleware('role:coordinator')
+        ->name('coordinator.reports.forwardings.store');
+    Route::post('/coordinator/reports/{report}/complete', [CoordinatorReportController::class, 'complete'])
+        ->whereNumber('report')
+        ->middleware('role:coordinator')
+        ->name('coordinator.reports.complete');
 
     Route::prefix('volunteer/reports')
         ->name('volunteer.reports.')
