@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Report extends Model
 {
     protected $table = 'reports';
+
     protected $primaryKey = 'report_id';
+
     protected $fillable = [
         'reporter_id',
         'evidence_file',
@@ -21,6 +23,14 @@ class Report extends Model
         'longitude',
         'status',
     ];
+
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'incident_time' => 'datetime',
+        ];
+    }
 
     public function reporter(): BelongsTo
     {

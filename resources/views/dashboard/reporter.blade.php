@@ -12,12 +12,14 @@
         <article class="dashboard-card">
             <span class="dashboard-card-icon" aria-hidden="true">⌖</span>
             <h2>Laporkan kejadian</h2>
-            <p>Alur pengiriman laporan kebakaran hutan akan tersedia di ruang reporter ini.</p>
+            <p>Kirim informasi kejadian kebakaran hutan agar tim dapat mulai menindaklanjutinya.</p>
+            <a class="card-link" href="{{ route('reporter.reports.create') }}">Buat laporan <span aria-hidden="true">→</span></a>
         </article>
         <article class="dashboard-card">
             <span class="dashboard-card-icon" aria-hidden="true">◷</span>
-            <h2>Pantau status</h2>
-            <p>Perkembangan laporan Anda akan ditampilkan setelah fitur pelaporan diaktifkan.</p>
+            <h2>Laporan saya</h2>
+            <p>Lihat kembali laporan yang sudah Anda kirim dan pantau status penanganannya.</p>
+            <a class="card-link" href="{{ route('reporter.reports.index') }}">Lihat laporan <span aria-hidden="true">→</span></a>
         </article>
         <article class="dashboard-card">
             <span class="dashboard-card-icon" aria-hidden="true">⌂</span>

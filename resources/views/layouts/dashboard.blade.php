@@ -20,6 +20,9 @@
                     <span>Karhutla Report</span>
                 </a>
                 <div class="header-actions">
+                    @if (auth()->user()->role === 'reporter')
+                        <a class="link-muted report-nav-link" href="{{ route('reporter.reports.index') }}">Laporan saya</a>
+                    @endif
                     <div class="user-chip">
                         <span class="user-avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 1)) }}</span>
                         <span>{{ auth()->user()->name }}</span>
