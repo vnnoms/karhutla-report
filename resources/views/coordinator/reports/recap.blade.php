@@ -105,12 +105,13 @@
                             <th>Provinsi</th>
                             <th>Kondisi</th>
                             <th>Status</th>
+                            <th>Tindak lanjut</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($reports as $report)
                             <tr>
-                                <td><a class="recap-detail-link" href="{{ route('coordinator.reports.show', $report) }}">#{{ $report->report_id }}</a></td>
+                                <td>#{{ $report->report_id }}</td>
                                 <td>{{ $report->reporter?->name ?? 'Pengguna tidak ditemukan' }}</td>
                                 <td class="recap-description">{{ str($report->report_description)->limit(120) }}</td>
                                 <td>{{ $report->incident_time?->locale('id')->translatedFormat('d M Y, H:i') ?? '—' }}</td>
@@ -118,6 +119,12 @@
                                 <td>{{ $report->address?->province ?? '—' }}</td>
                                 <td>{{ $conditionLabels[$report->condition_level] ?? str($report->condition_level)->headline() }}</td>
                                 <td><span class="status-badge status-{{ $report->status }}">{{ $statusLabels[$report->status] ?? str($report->status)->headline() }}</span></td>
+                                <td class="recap-action-cell">
+                                    @if ($report->follow_up_reviews_count > 0)
+                                        <span class="role-badge recap-follow-up-badge">Perlu diteruskan</span>
+                                    @endif
+                                    <a class="button button-secondary recap-detail-button" href="{{ route('coordinator.reports.show', $report) }}">Detail &amp; tindak lanjut</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

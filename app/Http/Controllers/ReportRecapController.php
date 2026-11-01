@@ -74,6 +74,7 @@ class ReportRecapController extends Controller
 
         $reports = Report::query()
             ->with(['reporter:user_id,name', 'address:address_id,city_regency,province'])
+            ->withCount(['reviews as follow_up_reviews_count' => fn ($query) => $query->where('followed_up_required', true)])
             ->when($filters['province'] ?? null, fn ($query, string $province) => $query->whereHas('address', fn ($addressQuery) => $addressQuery->where('province', $province)))
             ->when($filters['city_regency'] ?? null, fn ($query, string $city) => $query->whereHas('address', fn ($addressQuery) => $addressQuery->where('city_regency', $city)))
             ->when($filters['status'] ?? null, fn ($query, string $status) => $query->where('status', $status))

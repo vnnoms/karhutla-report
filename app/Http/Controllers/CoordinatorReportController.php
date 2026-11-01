@@ -54,6 +54,13 @@ class CoordinatorReportController extends Controller
         return Storage::disk('public')->response($report->evidence_file);
     }
 
+    public function forwardings(Report $report): RedirectResponse
+    {
+        Gate::authorize('viewAsCoordinator', $report);
+
+        return redirect()->route('coordinator.reports.show', $report);
+    }
+
     public function storeForwarding(StoreReportForwardingRequest $request, Report $report): RedirectResponse
     {
         $validated = $request->validated();

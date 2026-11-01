@@ -39,6 +39,10 @@ Route::middleware('auth')->group(function (): void {
         ->whereNumber('report')
         ->middleware('role:coordinator')
         ->name('coordinator.reports.evidence');
+    Route::get('/coordinator/reports/{report}/forwardings', [CoordinatorReportController::class, 'forwardings'])
+        ->whereNumber('report')
+        ->middleware('role:coordinator')
+        ->name('coordinator.reports.forwardings.index');
     Route::post('/coordinator/reports/{report}/forwardings', [CoordinatorReportController::class, 'storeForwarding'])
         ->whereNumber('report')
         ->middleware('role:coordinator')

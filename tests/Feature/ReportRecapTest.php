@@ -56,6 +56,17 @@ class ReportRecapTest extends TestCase
             $table->foreign('reporter_id')->references('user_id')->on('users');
             $table->foreign('address_id')->references('address_id')->on('addresses');
         });
+
+        Schema::connection('sqlite')->create('report_reviews', function (Blueprint $table): void {
+            $table->bigIncrements('review_id');
+            $table->unsignedBigInteger('report_id');
+            $table->unsignedBigInteger('volunteer_id');
+            $table->text('review_note')->nullable();
+            $table->dateTime('review_date')->useCurrent();
+            $table->boolean('followed_up_required')->nullable();
+            $table->foreign('report_id')->references('report_id')->on('reports');
+            $table->foreign('volunteer_id')->references('user_id')->on('users');
+        });
     }
 
     public function test_coordinator_sees_dynamic_summary_regions_and_report_details(): void

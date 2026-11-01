@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ReportForwarding extends Model
 {
     protected $table = 'report_forwardings';
+
     protected $primaryKey = 'forwarding_id';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -18,6 +20,14 @@ class ReportForwarding extends Model
         'forwarding_note',
         'forwarded_at',
     ];
+
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'forwarded_at' => 'datetime',
+        ];
+    }
 
     public function report(): BelongsTo
     {
